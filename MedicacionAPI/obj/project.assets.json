@@ -4312,11 +4312,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Javier Rivera\\ProyectosUMG\\MedicacionAPI\\MedicacionAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Javier Rivera\\ProyectosUMG\\HelloWorldMAUI\\MedicacionAPI\\MedicacionAPI.csproj",
       "projectName": "MedicacionAPI",
-      "projectPath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\MedicacionAPI\\MedicacionAPI.csproj",
+      "projectPath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\HelloWorldMAUI\\MedicacionAPI\\MedicacionAPI.csproj",
       "packagesPath": "C:\\Users\\Javier Rivera\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\MedicacionAPI\\obj\\",
+      "outputPath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\HelloWorldMAUI\\MedicacionAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

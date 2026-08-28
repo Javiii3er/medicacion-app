@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aG6iGakCNwI=",
+  "dgSpecHash": "wNBbwd5NRJk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\MedicacionAPI\\MedicacionAPI.csproj",
+  "projectFilePath": "C:\\Users\\Javier Rivera\\ProyectosUMG\\HelloWorldMAUI\\MedicacionAPI\\MedicacionAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Javier Rivera\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Javier Rivera\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
