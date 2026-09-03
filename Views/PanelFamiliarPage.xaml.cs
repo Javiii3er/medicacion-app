@@ -56,6 +56,11 @@ namespace HelloWorldMAUI.Views
             Refresh.IsRefreshing = false;
         }
 
+        private async void OnAgregarMedicamentoClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AgregarMedicamentoPage(_api, _idUsuario));
+        }
+
         private void OnCerrarSesionClicked(object sender, EventArgs e)
         {
             Preferences.Remove("token");

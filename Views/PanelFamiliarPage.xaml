@@ -140,6 +140,14 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
+                <!-- Botón agregar medicamento -->
+                <Button Text="+ Agregar medicamento"
+                        FontSize="14" FontAttributes="Bold"
+                        BackgroundColor="#DCEFFD" TextColor="#185FA5"
+                        CornerRadius="12" HeightRequest="48"
+                        Clicked="OnAgregarMedicamentoClicked"
+                        Margin="0,8,0,0"/>
+
                 <!-- Botón cerrar sesión -->
                 <Button Text="Cerrar sesión"
                         FontSize="13"
