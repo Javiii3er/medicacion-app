@@ -34,6 +34,7 @@ builder.Services.AddAuthorization();
 
 // ── Controladores y Swagger ───────────────────────────────
 builder.Services.AddControllers();
+builder.Services.AddHostedService<MedicacionAPI.Services.VerificacionService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
