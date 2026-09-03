@@ -1,12 +1,14 @@
-﻿namespace HelloWorldMAUI
+﻿using HelloWorldMAUI.Services;
+using HelloWorldMAUI.Views;
+
+namespace HelloWorldMAUI
 {
     public partial class App : Application
     {
-        public App()
+        public App(ApiService api)
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new LoginPage(api));
         }
     }
 }

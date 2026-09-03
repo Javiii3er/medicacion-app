@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorldMAUI.Views.LoginPage"
+             Title="Inicio de sesión"
+             BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32" Spacing="0"
+                             VerticalOptions="Center">
+
+            <!-- Logo -->
+            <Frame BackgroundColor="#DCEFFD"
+                   CornerRadius="50"
+                   HeightRequest="100" WidthRequest="100"
+                   HorizontalOptions="Center"
+                   HasShadow="False"
+                   Padding="0"
+                   Margin="0,0,0,20">
+                <Label Text="💊"
+                       FontSize="48"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Frame>
+
+            <!-- Título -->
+            <Label Text="Sistema de Monitoreo"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#003A70"
+                   HorizontalOptions="Center"/>
+            <Label Text="de Medicación"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#003A70"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,4"/>
+            <Label Text="CAIMI Chiquimulilla"
+                   FontSize="13"
+                   TextColor="#5B6570"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,32"/>
+
+            <!-- Campo correo -->
+            <Label Text="Correo electrónico"
+                   FontSize="12"
+                   FontAttributes="Bold"
+                   TextColor="#5B6570"
+                   Margin="0,0,0,6"/>
+            <Border BackgroundColor="White"
+                    StrokeThickness="1.5"
+                    Stroke="#E4E8ED"
+                    StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,16">
+                <Entry x:Name="EntryCorreo"
+                       Placeholder="usuario@correo.com"
+                       FontSize="14"
+                       Keyboard="Email"
+                       Margin="12,8"/>
+            </Border>
+
+            <!-- Campo contraseña -->
+            <Label Text="Contraseña"
+                   FontSize="12"
+                   FontAttributes="Bold"
+                   TextColor="#5B6570"
+                   Margin="0,0,0,6"/>
+            <Border BackgroundColor="White"
+                    StrokeThickness="1.5"
+                    Stroke="#185FA5"
+                    StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,8">
+                <Entry x:Name="EntryContrasena"
+                       Placeholder="••••••••••"
+                       IsPassword="True"
+                       FontSize="14"
+                       Margin="12,8"/>
+            </Border>
+
+            <!-- Error -->
+            <Label x:Name="LblError"
+                   TextColor="#D32F2F"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   IsVisible="False"
+                   Margin="0,0,0,12"/>
+
+            <!-- Botón -->
+            <Button Text="Iniciar sesión"
+                    FontSize="15"
+                    FontAttributes="Bold"
+                    BackgroundColor="#185FA5"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="52"
+                    Clicked="OnLoginClicked"
+                    Margin="0,8,0,0"/>
+
+            <!-- Loading -->
+            <ActivityIndicator x:Name="Loading"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="#185FA5"
+                               Margin="0,16,0,0"
+                               HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

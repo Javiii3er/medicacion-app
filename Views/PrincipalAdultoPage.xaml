@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorldMAUI.Views.PrincipalAdultoPage"
+             Title="Inicio"
+             BackgroundColor="#F5F7FA">
+
+    <RefreshView x:Name="Refresh" Refreshing="OnRefreshing">
+        <ScrollView>
+            <VerticalStackLayout Padding="24" Spacing="12">
+
+                <!-- Saludo -->
+                <Label x:Name="LblSaludo"
+                       Text="Buenos días,"
+                       FontSize="15"
+                       TextColor="#1C2530"/>
+                <Label x:Name="LblNombre"
+                       Text="Don José"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="#003A70"
+                       Margin="0,0,0,8"/>
+
+                <!-- Próximo medicamento -->
+                <Label Text="Próximo recordatorio"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#5B6570"/>
+
+                <Border BackgroundColor="White"
+                        StrokeThickness="1"
+                        Stroke="#E4E8ED"
+                        StrokeShape="RoundRectangle 14"
+                        Padding="14">
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="LblProximoMed"
+                               Text="Sin recordatorios pendientes"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#003A70"/>
+                        <Label x:Name="LblProximaHora"
+                               Text=""
+                               FontSize="13"
+                               TextColor="#185FA5"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Mis medicamentos -->
+                <Label Text="Mis medicamentos"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#5B6570"
+                       Margin="0,8,0,0"/>
+
+                <CollectionView x:Name="ListaMedicamentos"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="White"
+                                    StrokeThickness="1"
+                                    Stroke="#E4E8ED"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="14"
+                                    Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="{Binding Nombre}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               TextColor="#003A70"/>
+                                        <Label Text="{Binding DosisTexto}"
+                                               FontSize="12"
+                                               TextColor="#5B6570"/>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding PrimeraHora}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#185FA5"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Botón historial -->
+                <Button Text="Ver historial"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        BackgroundColor="#DCEFFD"
+                        TextColor="#185FA5"
+                        CornerRadius="12"
+                        HeightRequest="48"
+                        Clicked="OnVerHistorialClicked"
+                        Margin="0,8,0,0"/>
+
+                <!-- Botón cerrar sesión -->
+                <Button Text="Cerrar sesión"
+                        FontSize="13"
+                        BackgroundColor="Transparent"
+                        TextColor="#5B6570"
+                        Clicked="OnCerrarSesionClicked"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

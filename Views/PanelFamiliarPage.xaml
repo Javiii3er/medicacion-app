@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorldMAUI.Views.PanelFamiliarPage"
+             Title="Panel familiar"
+             BackgroundColor="#F5F7FA">
+
+    <RefreshView x:Name="Refresh" Refreshing="OnRefreshing">
+        <ScrollView>
+            <VerticalStackLayout Padding="24" Spacing="12">
+
+                <!-- Título -->
+                <Label x:Name="LblTitulo"
+                       Text="Resumen del paciente"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="#1C2530"/>
+
+                <!-- Panel estadísticas -->
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                      ColumnSpacing="12" RowSpacing="12">
+
+                    <Border Grid.Row="0" Grid.Column="0"
+                            BackgroundColor="White"
+                            StrokeThickness="1" Stroke="#E4E8ED"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="LblPorcentaje"
+                                   Text="0%"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="#2E7D32"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Cumplimiento"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   TextColor="#5B6570"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="0" Grid.Column="1"
+                            BackgroundColor="White"
+                            StrokeThickness="1" Stroke="#E4E8ED"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="LblProgramados"
+                                   Text="0"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="#1C2530"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Programados"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   TextColor="#5B6570"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" Grid.Column="0"
+                            BackgroundColor="White"
+                            StrokeThickness="1" Stroke="#E4E8ED"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="LblConfirmados"
+                                   Text="0"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="#2E7D32"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Confirmados"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   TextColor="#5B6570"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" Grid.Column="1"
+                            BackgroundColor="White"
+                            StrokeThickness="1" Stroke="#E4E8ED"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="LblAlertas"
+                                   Text="0"
+                                   FontSize="24"
+                                   FontAttributes="Bold"
+                                   TextColor="#D32F2F"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="Alertas"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   TextColor="#5B6570"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Medicamentos -->
+                <Label Text="Medicamentos registrados"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#5B6570"
+                       Margin="0,8,0,0"/>
+
+                <CollectionView x:Name="ListaMedicamentos"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="White"
+                                    StrokeThickness="1"
+                                    Stroke="#E4E8ED"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="14"
+                                    Margin="0,0,0,8">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="{Binding Nombre}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               TextColor="#003A70"/>
+                                        <Label Text="{Binding DosisTexto}"
+                                               FontSize="12"
+                                               TextColor="#5B6570"/>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding PrimeraHora}"
+                                           FontSize="13"
+                                           FontAttributes="Bold"
+                                           TextColor="#185FA5"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Botón cerrar sesión -->
+                <Button Text="Cerrar sesión"
+                        FontSize="13"
+                        BackgroundColor="Transparent"
+                        TextColor="#5B6570"
+                        Clicked="OnCerrarSesionClicked"
+                        Margin="0,8,0,0"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>
