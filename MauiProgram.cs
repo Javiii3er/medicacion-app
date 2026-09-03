@@ -22,7 +22,7 @@ namespace HelloWorldMAUI
             // HttpClient para el API
             builder.Services.AddHttpClient("MedicacionAPI", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7239/");
+                client.BaseAddress = new Uri("http://10.0.2.2:5271/");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             });
 
