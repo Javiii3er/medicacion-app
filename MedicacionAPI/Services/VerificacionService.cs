@@ -20,7 +20,6 @@ namespace MedicacionAPI.Services
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("VerificacionService iniciado.");
-
             while (!stoppingToken.IsCancellationRequested)
             {
                 await VerificarConfirmacionesPendientes();
@@ -38,7 +37,6 @@ namespace MedicacionAPI.Services
                 var ahora = DateTime.Now;
                 var hoy = DateOnly.FromDateTime(ahora);
 
-                // Obtener todos los horarios activos
                 var horarios = await context.Horarios
                     .Include(h => h.Medicamento)
                     .Where(h => h.Activo && h.Medicamento!.Activo)
@@ -46,29 +44,24 @@ namespace MedicacionAPI.Services
 
                 foreach (var horario in horarios)
                 {
-                    // Calcular la hora de vencimiento (hora programada + 30 min)
                     var horaVencimiento = ahora.Date
                         .Add(horario.HoraAdministracion.ToTimeSpan())
                         .AddMinutes(30);
 
-                    // Solo verificar si ya venció el período de tolerancia
                     if (ahora < horaVencimiento) continue;
 
-                    // Verificar si ya existe una alerta para este horario hoy
                     var alertaExiste = await context.Alertas
                         .AnyAsync(a => a.IdHorario == horario.IdHorario
                                     && DateOnly.FromDateTime(a.FechaCreacion) == hoy);
 
                     if (alertaExiste) continue;
 
-                    // Verificar si existe confirmación para este horario hoy
                     var confirmacionExiste = await context.Confirmaciones
                         .AnyAsync(c => c.IdHorario == horario.IdHorario
                                     && c.FechaConfirmacion == hoy);
 
                     if (confirmacionExiste) continue;
 
-                    // Crear registro de alerta
                     var alerta = new Alerta
                     {
                         IdUsuario = horario.Medicamento!.IdUsuario,
@@ -83,8 +76,24 @@ namespace MedicacionAPI.Services
                     context.Alertas.Add(alerta);
                     await context.SaveChangesAsync();
 
+                    // Enviar correo al familiar
+                    var notifSvc = scope.ServiceProvider
+                        .GetRequiredService<NotificacionService>();
+
+                    var enviado = await notifSvc.EnviarAlertaFamiliarAsync(
+                        horario.Medicamento!.IdUsuario,
+                        horario.Medicamento.Nombre,
+                        $"{horario.Medicamento.Dosis} {horario.Medicamento.Unidad}",
+                        horaVencimiento.ToString("HH:mm"),
+                        context);
+
+                    alerta.Estado = enviado ? "enviada" : "pendiente";
+                    alerta.HoraEnvio = enviado ? DateTime.Now : null;
+                    await context.SaveChangesAsync();
+
                     _logger.LogWarning(
-                        "Alerta generada: Medicamento {Med}, Horario {Hora}, Usuario {User}",
+                        "Alerta {Estado}: Medicamento {Med}, Horario {Hora}, Usuario {User}",
+                        alerta.Estado,
                         horario.Medicamento.Nombre,
                         horario.HoraAdministracion,
                         horario.Medicamento.IdUsuario);

@@ -45,7 +45,10 @@ namespace MedicacionAPI.Services
                 var fromEmail = _config["SendGrid:FromEmail"];
                 var fromName = _config["SendGrid:FromName"];
 
-                if (string.IsNullOrEmpty(apiKey) || apiKey == "TU_API_KEY_AQUI")
+                _logger.LogInformation("ApiKey leída: {Key}",
+    string.IsNullOrEmpty(apiKey) ? "VACÍA" : apiKey.Substring(0, 10) + "...");
+
+                if (string.IsNullOrEmpty(apiKey) || apiKey == "no-configurada")
                 {
                     _logger.LogWarning(
                         "SendGrid no configurado. Alerta pendiente para {Email}",
