@@ -26,11 +26,13 @@ namespace HelloWorldMAUI
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             });
 
-            // Registrar ApiService
+            // Registrar ApiService y Páginas
             builder.Services.AddSingleton<ApiService>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<RegistroPage>();
             builder.Services.AddTransient<PrincipalAdultoPage>();
             builder.Services.AddTransient<PanelFamiliarPage>();
+            builder.Services.AddTransient<EditarMedicamentoPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -35,6 +35,21 @@ namespace HelloWorldMAUI.Services
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        public async Task<bool> RegistrarAsync(string nombre, string apellido, string correo, string contrasena, string rol)
+        {
+            var body = JsonSerializer.Serialize(new
+            {
+                nombre,
+                apellido,
+                correo,
+                contrasena,
+                rol
+            });
+            var content = new StringContent(body, Encoding.UTF8, "application/json");
+            var response = await _http.PostAsync("api/Usuario/registro", content);
+            return response.IsSuccessStatusCode;
+        }
+
         // ── Medicamentos ──────────────────────────────────
         public async Task<List<MedicamentoResponse>> GetMedicamentosAsync(int idUsuario)
         {
@@ -50,6 +65,14 @@ namespace HelloWorldMAUI.Services
             var body = JsonSerializer.Serialize(dto);
             var content = new StringContent(body, Encoding.UTF8, "application/json");
             var response = await _http.PostAsync("api/Medicamento", content);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> ActualizarMedicamentoAsync(int id, object dto)
+        {
+            var body = JsonSerializer.Serialize(dto);
+            var content = new StringContent(body, Encoding.UTF8, "application/json");
+            var response = await _http.PutAsync($"api/Medicamento/{id}", content);
             return response.IsSuccessStatusCode;
         }
 

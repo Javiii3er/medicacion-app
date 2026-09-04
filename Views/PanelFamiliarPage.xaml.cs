@@ -6,6 +6,7 @@ namespace HelloWorldMAUI.Views
     {
         private readonly ApiService _api;
         private readonly int _idUsuario;
+        private List<MedicamentoResponse> _medicamentosOriginales = new();
 
         public PanelFamiliarPage(ApiService api, int idUsuario, string nombre)
         {
@@ -39,8 +40,8 @@ namespace HelloWorldMAUI.Views
                 };
             }
 
-            var medicamentos = await _api.GetMedicamentosAsync(_idUsuario);
-            var items = medicamentos.Select(m => new
+            _medicamentosOriginales = await _api.GetMedicamentosAsync(_idUsuario);
+            var items = _medicamentosOriginales.Select(m => new
             {
                 m.Nombre,
                 DosisTexto = $"{m.Dosis} {m.Unidad} · {m.Frecuencia}",
@@ -48,6 +49,16 @@ namespace HelloWorldMAUI.Views
             }).ToList();
 
             ListaMedicamentos.ItemsSource = items;
+        }
+
+        private async void OnMedicamentoTapped(object sender, TappedEventArgs e)
+        {
+            if (e.Parameter is not { } param) return;
+            var nombre = param.GetType().GetProperty("Nombre")?.GetValue(param)?.ToString();
+            var med = _medicamentosOriginales.FirstOrDefault(m => m.Nombre == nombre);
+            if (med != null)
+                await Navigation.PushAsync(
+                    new EditarMedicamentoPage(_api, _idUsuario, med));
         }
 
         private async void OnRefreshing(object sender, EventArgs e)

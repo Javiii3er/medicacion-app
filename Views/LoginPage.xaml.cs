@@ -66,5 +66,12 @@ namespace HelloWorldMAUI.Views
                 Loading.IsRunning = false;
             }
         }
+
+        // Método para la navegación al registro
+        private void OnRegistroTapped(object sender, TappedEventArgs e)
+        {
+            Application.Current!.MainPage = new NavigationPage(
+                new RegistroPage(_api));
+        }
     }
 }

@@ -96,6 +96,18 @@
                     Clicked="OnLoginClicked"
                     Margin="0,8,0,0"/>
 
+            <!-- Enlace a registro -->
+            <Label Text="¿No tiene cuenta? Regístrese"
+                   FontSize="12"
+                   TextColor="#185FA5"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,12,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRegistroTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
             <!-- Loading -->
             <ActivityIndicator x:Name="Loading"
                                IsRunning="False"

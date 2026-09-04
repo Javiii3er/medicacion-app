@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorldMAUI.Views.RegistroPage"
+             Title="Registro"
+             BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32" Spacing="0"
+                             VerticalOptions="Center">
+
+            <!-- Logo -->
+            <Frame BackgroundColor="#DCEFFD"
+                   CornerRadius="50"
+                   HeightRequest="80" WidthRequest="80"
+                   HorizontalOptions="Center"
+                   HasShadow="False"
+                   Padding="0"
+                   Margin="0,0,0,16">
+                <Label Text="💊"
+                       FontSize="38"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Frame>
+
+            <!-- Título -->
+            <Label Text="Crear cuenta"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#003A70"
+                   HorizontalOptions="Center"/>
+            <Label Text="CAIMI Chiquimulilla"
+                   FontSize="13"
+                   TextColor="#5B6570"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,24"/>
+
+            <!-- Nombre -->
+            <Label Text="Nombre" FontSize="12" FontAttributes="Bold"
+                   TextColor="#5B6570" Margin="0,0,0,6"/>
+            <Border BackgroundColor="White" StrokeThickness="1.5"
+                    Stroke="#E4E8ED" StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,14">
+                <Entry x:Name="EntryNombre" Placeholder="Ingrese su nombre"
+                       FontSize="14" Margin="12,8"/>
+            </Border>
+
+            <!-- Apellido -->
+            <Label Text="Apellido" FontSize="12" FontAttributes="Bold"
+                   TextColor="#5B6570" Margin="0,0,0,6"/>
+            <Border BackgroundColor="White" StrokeThickness="1.5"
+                    Stroke="#E4E8ED" StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,14">
+                <Entry x:Name="EntryApellido" Placeholder="Ingrese su apellido"
+                       FontSize="14" Margin="12,8"/>
+            </Border>
+
+            <!-- Correo -->
+            <Label Text="Correo electrónico" FontSize="12" FontAttributes="Bold"
+                   TextColor="#5B6570" Margin="0,0,0,6"/>
+            <Border BackgroundColor="White" StrokeThickness="1.5"
+                    Stroke="#E4E8ED" StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,14">
+                <Entry x:Name="EntryCorreo" Placeholder="usuario@correo.com"
+                       Keyboard="Email" FontSize="14" Margin="12,8"/>
+            </Border>
+
+            <!-- Contraseña -->
+            <Label Text="Contraseña" FontSize="12" FontAttributes="Bold"
+                   TextColor="#5B6570" Margin="0,0,0,6"/>
+            <Border BackgroundColor="White" StrokeThickness="1.5"
+                    Stroke="#E4E8ED" StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,14">
+                <Entry x:Name="EntryContrasena" Placeholder="Mínimo 8 caracteres"
+                       IsPassword="True" FontSize="14" Margin="12,8"/>
+            </Border>
+
+            <!-- Rol -->
+            <Label Text="Tipo de usuario" FontSize="12" FontAttributes="Bold"
+                   TextColor="#5B6570" Margin="0,0,0,6"/>
+            <Border BackgroundColor="White" StrokeThickness="1.5"
+                    Stroke="#185FA5" StrokeShape="RoundRectangle 10"
+                    Margin="0,0,0,8">
+                <Picker x:Name="PickerRol" Title="Seleccione su rol"
+                        FontSize="14" Margin="12,8">
+                    <Picker.Items>
+                        <x:String>AdultoMayor</x:String>
+                        <x:String>Familiar</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Border>
+
+            <!-- Error -->
+            <Label x:Name="LblError"
+                   TextColor="#D32F2F"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   IsVisible="False"
+                   Margin="0,0,0,10"/>
+
+            <!-- Botón registrar -->
+            <Button Text="Crear cuenta"
+                    FontSize="15"
+                    FontAttributes="Bold"
+                    BackgroundColor="#185FA5"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="52"
+                    Clicked="OnRegistrarClicked"
+                    Margin="0,8,0,0"/>
+
+            <!-- Loading -->
+            <ActivityIndicator x:Name="Loading"
+                               IsRunning="False"
+                               IsVisible="False"
+                               Color="#185FA5"
+                               Margin="0,12,0,0"
+                               HorizontalOptions="Center"/>
+
+            <!-- Volver al login -->
+            <Label Text="¿Ya tiene cuenta? Inicie sesión"
+                   FontSize="12"
+                   TextColor="#185FA5"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,16,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnVolverLoginTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
