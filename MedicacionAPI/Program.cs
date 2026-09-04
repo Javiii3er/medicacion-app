@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using MedicacionAPI.Data;
+using MedicacionAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,9 +33,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+// ── Servicios de la aplicación ────────────────────────────
+builder.Services.AddScoped<NotificacionService>();
+builder.Services.AddHostedService<VerificacionService>();
+
 // ── Controladores y Swagger ───────────────────────────────
 builder.Services.AddControllers();
-builder.Services.AddHostedService<MedicacionAPI.Services.VerificacionService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
